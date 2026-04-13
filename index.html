@@ -1,0 +1,59 @@
+<body>
+
+<script>
+
+var vDATE = new Date();
+var vMIN = vDATE.getSeconds();
+
+var vMiSec = 0;
+var vSec = 0;
+var vMin = 0;
+
+var vZ = 0;
+var vAside = 0;
+var vBside = 0;
+var vCside = 0;
+var vDside = 0;
+var vEside = 0;
+
+setInterval(function(){
+
+	//Get Current Time
+	vDATE = new Date();
+	vMiSec = vDATE.getMilliseconds();
+	vSec = vDATE.getSeconds();
+	vMin = vDATE.getMinutes();
+
+	//vZ = vMiSec/2.77777777778
+	vZ = Math.abs((((vSec*1000)+vMiSec)/41.6666666667));
+
+	vAside = vZ-72;
+	vBside = vZ-144;
+	vCside = vZ-216;
+	vDside = vZ-288;
+	vEside = vZ-360;
+
+	if(vAside<0)
+	{vAside=vAside+360;}
+	if(vBside<0)
+	{vBside=vBside+360;}
+	if(vCside<0)
+	{vCside=vCside+360;}
+	if(vDside<0)
+	{vDside=vDside+360;}
+	if(vEside<0)
+	{vEside=vEside+360;}
+
+	document.body.style.setProperty(`--Grad-A`, `hsl(${vAside}, 90%, 50%)`);
+	document.body.style.setProperty(`--Grad-B`, `hsl(${vBside}, 90%, 50%)`);
+	document.body.style.setProperty(`--Grad-C`, `hsl(${vCside}, 90%, 50%)`);
+	document.body.style.setProperty(`--Grad-D`, `hsl(${vDside}, 90%, 50%)`);
+	document.body.style.setProperty(`--Grad-E`, `hsl(${vEside}, 90%, 50%)`);
+
+	document.body.style.background = 'linear-gradient(to bottom right, var(--Grad-A), var(--Grad-B), var(--Grad-C), var(--Grad-D), var(--Grad-E))';
+
+}, 1);
+
+</script>
+
+</body>
